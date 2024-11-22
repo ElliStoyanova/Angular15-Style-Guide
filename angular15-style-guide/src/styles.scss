@@ -1,16 +1,46 @@
 @use '@angular/material' as mat;
-@use 'custom-theme';
+@use '_custom-theme';
+@use '_color-theme' as custom-colors-theme;
 
 @include mat.core();
+
 
 /* You can add global styles to this file, and also import other style files */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+$theme: mat.define-light-theme(
+    (
+        color: custom-colors-theme.$color,
+        typography: mat.define-typography-config(),
+    )
+);
 
-// $theme: mat.define-light-theme((
-//   density: 0
-// ));
+@include mat.all-component-themes($theme);
+@include mat.button-density(-1);
+// @include mat.form-field-density(-5);
+// @include mat.toolbar-density(-3);
 
-// @include mat.all-component-themes($theme);
+// if we want 32 px height of the mat-form-field
+mat-form-field {
+
+    .mat-mdc-form-field-flex .mat-mdc-form-field-infix {
+        min-height: 32px;
+    }
+        
+    .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }    
+}
+
+// mat-toolbar {
+    .mat-toolbar-multiple-rows {
+        min-height: 50px;
+    }
+    .mat-toolbar-row, .mat-toolbar-single-row {
+        height: 50px;
+    } 
+// }
+

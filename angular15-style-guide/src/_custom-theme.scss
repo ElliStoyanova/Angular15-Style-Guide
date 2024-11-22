@@ -1,0 +1,5 @@
+@use '@angular/material' as mat;
+
+
+@include mat.button-density(-1);
+@include mat.form-field-density(-5);

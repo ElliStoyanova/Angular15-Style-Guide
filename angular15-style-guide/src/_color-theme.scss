@@ -1,0 +1,105 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$primary: mat.define-palette(mat.$blue-palette, 700);
+$accent: mat.define-palette(mat.$deep-purple-palette, 500);
+$warn: mat.define-palette(mat.$red-palette);
+$tertiary: mat.define-palette(mat.$grey-palette);
+
+// TODO(Mihail): Should remove merge after we remove legacy components
+
+$custom-color-theme: map.merge(
+    mat.define-light-theme(
+        (
+            color: (
+                primary: $primary,
+                accent: $accent,
+                warn: $warn
+            ),
+        )
+    ),
+    mat.define-light-theme($primary, $accent, $warn)
+);
+
+$color: (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+    tertiary: $tertiary
+);
+
+$raised-button-background: map.get(mat.$grey-palette, 100);
+
+$grey-ultra-light: map.get(mat.$grey-palette, 50);
+$grey-light: map.get(mat.$grey-palette, 200);
+$grey-medium: map.get(mat.$grey-palette, 300);
+$grey-dark: map.get(mat.$grey-palette, 400);
+$grey-ultra-dark: map.get(mat.$grey-palette, 900);
+$grey-dark-text: map.get(mat.$grey-palette, 700);
+$grey-light-text: map.get(mat.$grey-palette, 600);
+$grey-ultra-light-text: map.get(mat.$grey-palette, 500);
+$teal-dark: map.get(mat.$teal-palette, A700);
+$blue-light: map.get(mat.$blue-palette, 50);
+$blue-light-text: map.get(mat.$blue-palette, 400);
+$blue-medium: map.get(mat.$blue-palette, 700);
+$blue-dark-text: map.get(mat.$blue-palette, 900);
+$green-light: map.get(mat.$green-palette, 50);
+$green-light-text: map.get(mat.$green-palette, A700);
+$green-text: map.get(mat.$light-green-palette, A700);
+$orange-light: map.get(mat.$amber-palette, 100);
+$orange-light-text: map.get(mat.$orange-palette, 600);
+$pink-light: map.get(mat.$pink-palette, 50);
+$pink-light-text: map.get(mat.$pink-palette, 300);
+$red-light: mat.get-color-from-palette($warn, 500);
+$blue-outline: map.get(mat.$blue-palette, 500);
+$selected-background: map.get(mat.$cyan-palette, 50);
+$success-notification: map.get(mat.$light-green-palette, 600);
+$error-notification: mat.get-color-from-palette($warn, 500);
+$warn-notification: map.get(mat.$orange-palette, 600);
+$info-notification: map.get(mat.$blue-palette, 700);
+$filter-label-background: map.get(mat.$blue-palette, 100);
+
+$background: map.get($custom-color-theme, background);
+$background: map.merge(
+    $background,
+    (
+        app-bar: #fff,
+        raised-button: $raised-button-background
+    )
+);
+$custom-color-theme: map.merge(
+    $custom-color-theme,
+    (
+        background: $background,
+        grey-ultra-light: $grey-ultra-light,
+        grey-light: $grey-light,
+        grey-medium: $grey-medium,
+        grey-dark: $grey-dark,
+        grey-ultra-dark: $grey-ultra-dark,
+        grey-dark-text: $grey-dark-text,
+        grey-light-text: $grey-light-text,
+        grey-ultra-light-text: $grey-ultra-light-text,
+        teal-dark: $teal-dark,
+        blue-light: $blue-light,
+        blue-light-text: $blue-light-text,
+        blue-medium: $blue-medium,
+        blue-dark-text: $blue-dark-text,
+        green-light: $green-light,
+        green-light-text: $green-light-text,
+        green-text: $green-text,
+        orange-light: $orange-light,
+        orange-light-text: $orange-light-text,
+        pink-light: $pink-light,
+        pink-light-text: $pink-light-text,
+        red-light: $red-light,
+        blue-outline: $blue-outline,
+        selected-background: $selected-background,
+        success-notification: $success-notification,
+        error-notification: $error-notification,
+        warn-notification: $warn-notification,
+        info-notification: $info-notification,
+        filter-label-background: $filter-label-background
+    )
+);
