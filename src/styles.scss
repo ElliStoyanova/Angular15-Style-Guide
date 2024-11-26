@@ -17,8 +17,22 @@ $theme: mat.define-light-theme(
     )
 );
 
+$button-typography-level: mat.define-typography-level(
+  $font-family: 'Roboto, sans-serif',
+  $font-weight: 500,
+  $font-size: 14px,
+  $line-height: 16px,
+  $letter-spacing: normal
+);
+
+$button-typography: mat.define-typography-config(
+    $button: $button-typography-level
+);
+
+
 @include mat.all-component-themes($theme);
 @include mat.button-density(-1);
+@include mat.button-typography($button-typography);
 // @include mat.form-field-density(-5);
 // @include mat.toolbar-density(-3);
 
